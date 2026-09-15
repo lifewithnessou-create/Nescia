@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const links = [
+  { label: "Notre histoire", href: "/notre-histoire" },
   { label: "Pilates Reformer", href: "/pilates-reformer" },
   { label: "Cours collectifs", href: "/cours-collectifs" },
   { label: "Glow Bar", href: "/glow-bar" },
@@ -12,24 +13,40 @@ const links = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const light = !scrolled && !open;
+  const textColor = light ? "text-[#F3EEE5]" : "text-foreground";
+  const barColor = light ? "bg-[#F3EEE5]" : "bg-foreground";
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        scrolled ? "bg-background/95 shadow-sm backdrop-blur-sm" : "bg-transparent"
+      }`}
+    >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 sm:px-10">
         <Link
           href="/"
-          className="font-serif text-xl tracking-[0.15em] text-[#F3EEE5]"
+          className={`font-serif text-xl tracking-[0.15em] ${textColor}`}
           onClick={() => setOpen(false)}
         >
           NESCIA
         </Link>
 
-        <nav className="hidden items-center gap-10 md:flex">
+        <nav className="hidden items-center gap-8 md:flex">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="font-sans text-xs tracking-[0.2em] text-[#F3EEE5] uppercase transition-opacity hover:opacity-70"
+              className={`font-sans text-xs tracking-[0.2em] uppercase transition-opacity hover:opacity-70 ${textColor}`}
             >
               {link.label}
             </Link>
@@ -38,7 +55,7 @@ export function Header() {
 
         <Link
           href="/connexion"
-          className="hidden font-sans text-xs tracking-[0.2em] text-[#F3EEE5] uppercase transition-opacity hover:opacity-70 md:block"
+          className={`hidden font-sans text-xs tracking-[0.2em] uppercase transition-opacity hover:opacity-70 md:block ${textColor}`}
         >
           Connexion
         </Link>
@@ -51,10 +68,10 @@ export function Header() {
           className="flex h-8 w-8 flex-col items-end justify-center gap-1.5 md:hidden"
         >
           <span
-            className={`h-px bg-[#F3EEE5] transition-all ${open ? "w-6 translate-y-[3.5px] rotate-45" : "w-6"}`}
+            className={`h-px transition-all ${barColor} ${open ? "w-6 translate-y-[3.5px] rotate-45" : "w-6"}`}
           />
           <span
-            className={`h-px bg-[#F3EEE5] transition-all ${open ? "w-6 -translate-y-[3.5px] -rotate-45" : "w-4"}`}
+            className={`h-px transition-all ${barColor} ${open ? "w-6 -translate-y-[3.5px] -rotate-45" : "w-4"}`}
           />
         </button>
       </div>
