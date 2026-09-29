@@ -4,11 +4,13 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const links = [
+  { label: "Réserver un cours", href: "/#reservation" },
+  { label: "Nos abonnements", href: "/#abonnements" },
   { label: "Notre histoire", href: "/notre-histoire" },
-  { label: "Pilates Reformer", href: "/pilates-reformer" },
-  { label: "Cours collectifs", href: "/cours-collectifs" },
   { label: "Glow Bar", href: "/glow-bar" },
   { label: "Boutique", href: "/boutique" },
+  { label: "Événements", href: "/decouvrir-la-salle#evenements" },
+  { label: "Avis", href: "/#avis" },
 ];
 
 export function Header() {
@@ -24,7 +26,6 @@ export function Header() {
 
   const light = !scrolled && !open;
   const textColor = light ? "text-[#F3EEE5]" : "text-foreground";
-  const barColor = light ? "bg-[#F3EEE5]" : "bg-foreground";
 
   return (
     <header
@@ -32,7 +33,7 @@ export function Header() {
         scrolled ? "bg-background/95 shadow-sm backdrop-blur-sm" : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 sm:px-10">
+      <div className="relative z-50 mx-auto flex max-w-6xl items-center justify-between px-6 py-6 sm:px-10">
         <Link
           href="/"
           className={`font-serif text-xl tracking-[0.15em] ${textColor}`}
@@ -41,49 +42,25 @@ export function Header() {
           NESCIA
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`font-sans text-xs tracking-[0.2em] uppercase transition-opacity hover:opacity-70 ${textColor}`}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-
-        <Link
-          href="/connexion"
-          className={`hidden font-sans text-xs tracking-[0.2em] uppercase transition-opacity hover:opacity-70 md:block ${textColor}`}
-        >
-          Connexion
-        </Link>
-
         <button
           type="button"
           aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="flex h-8 w-8 flex-col items-end justify-center gap-1.5 md:hidden"
+          className={`font-serif text-2xl tracking-[0.3em] ${textColor}`}
         >
-          <span
-            className={`h-px transition-all ${barColor} ${open ? "w-6 translate-y-[3.5px] rotate-45" : "w-6"}`}
-          />
-          <span
-            className={`h-px transition-all ${barColor} ${open ? "w-6 -translate-y-[3.5px] -rotate-45" : "w-4"}`}
-          />
+          {open ? "×" : "⋯"}
         </button>
       </div>
 
       {open && (
-        <div className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-background md:hidden">
+        <div className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-6 bg-background px-6">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="font-serif text-3xl tracking-wide text-foreground"
+              className="font-serif text-2xl tracking-wide text-foreground sm:text-3xl"
             >
               {link.label}
             </Link>

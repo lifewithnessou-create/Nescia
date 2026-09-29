@@ -76,7 +76,7 @@ export default function DecouvrirLaSalle() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-6 py-24 sm:px-10">
+      <section id="evenements" className="mx-auto max-w-5xl scroll-mt-24 px-6 py-24 sm:px-10">
         <h2 className="font-serif text-3xl text-foreground sm:text-4xl">
           Événements
         </h2>
