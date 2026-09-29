@@ -92,11 +92,11 @@ export default function Home() {
       <section className="relative flex min-h-screen items-center justify-center">
         <HeroCarousel />
         <div className="relative flex flex-col items-center px-6 text-center">
-          <h1 className="font-serif text-[4rem] leading-none font-medium tracking-[0.08em] text-[#F3EEE5] sm:text-[6rem] md:text-[8rem]">
+          <h1 className="font-serif text-[2.5rem] leading-none font-medium tracking-[0.08em] text-[#F3EEE5] sm:text-[3.5rem] md:text-[4.5rem]">
             NESCIA
           </h1>
-          <div className="mt-6 h-px w-16 bg-accent" />
-          <p className="mt-6 font-sans text-xs tracking-[0.35em] text-[#F3EEE5] sm:text-sm">
+          <div className="mt-5 h-px w-12 bg-accent" />
+          <p className="mt-5 font-sans text-[0.65rem] tracking-[0.3em] text-[#F3EEE5] sm:text-xs">
             MOVE · GLOW · CONNECT
           </p>
         </div>
