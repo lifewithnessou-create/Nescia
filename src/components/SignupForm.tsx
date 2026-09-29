@@ -30,7 +30,7 @@ export function SignupForm() {
       setError(
         error.message.includes("already registered")
           ? "Un compte existe déjà avec cet e-mail."
-          : "Une erreur est survenue, réessayez.",
+          : `Erreur Supabase : ${error.message}`,
       );
       return;
     }
