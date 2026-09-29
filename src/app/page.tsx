@@ -34,27 +34,6 @@ const discoverCards = [
   },
 ];
 
-const pricingPlans = [
-  {
-    name: "Sans abonnement",
-    price: "À l'unité",
-    highlight: false,
-    rows: [
-      { label: "Cours collectifs", value: "120 MAD / séance" },
-      { label: "Pilates Reformer", value: "180 MAD / séance" },
-    ],
-  },
-  {
-    name: "Avec l'abonnement",
-    price: "650 MAD / mois",
-    highlight: true,
-    rows: [
-      { label: "Cours collectifs", value: "Illimités, inclus" },
-      { label: "Pilates Reformer", value: "-20%, soit 144 MAD / séance" },
-    ],
-  },
-];
-
 const hours = [
   { day: "Lundi – Vendredi", time: "7h00 – 21h00" },
   { day: "Samedi", time: "8h00 – 19h00" },
@@ -118,62 +97,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="abonnements" className="mx-auto max-w-5xl scroll-mt-24 px-6 py-24 sm:px-10">
-        <div className="text-center">
-          <h2 className="font-serif text-3xl text-foreground sm:text-4xl">
-            Nos abonnements
-          </h2>
-          <p className="mx-auto mt-4 max-w-md font-sans text-sm text-foreground/70">
-            Les cours collectifs sont illimités et inclus avec
-            l&apos;abonnement. Le Pilates Reformer se réserve toujours à la
-            séance, à tarif réduit pour les abonnées.
-          </p>
-        </div>
-
-        <div className="mx-auto mt-12 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-2">
-          {pricingPlans.map((plan) => (
-            <div
-              key={plan.name}
-              className={`flex flex-col gap-6 p-8 ${
-                plan.highlight
-                  ? "border-2 border-accent"
-                  : "border border-foreground/15"
-              }`}
-            >
-              <div>
-                <h3 className="font-serif text-2xl text-foreground">
-                  {plan.name}
-                </h3>
-                <p className="mt-2 font-sans text-sm tracking-wide text-accent">
-                  {plan.price}
-                </p>
-              </div>
-              <ul className="flex flex-1 flex-col gap-4 font-sans text-sm text-foreground/70">
-                {plan.rows.map((row) => (
-                  <li key={row.label} className="flex flex-col gap-0.5">
-                    <span className="text-foreground/50">{row.label}</span>
-                    <span className="text-foreground">{row.value}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/rejoindre"
-                className="font-sans text-xs tracking-[0.2em] text-accent uppercase hover:opacity-70"
-              >
-                {plan.highlight ? "Adhérer →" : "Réserver →"}
-              </Link>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-12 text-center">
-          <Link
-            href="/rejoindre"
-            className="font-serif text-lg text-foreground transition-transform hover:translate-x-1"
-          >
-            Rejoignez-nous →
-          </Link>
-        </div>
+      <section id="abonnements" className="mx-auto max-w-2xl scroll-mt-24 px-6 py-24 text-center sm:px-10">
+        <h2 className="font-serif text-3xl text-foreground sm:text-4xl">
+          Nos abonnements
+        </h2>
+        <p className="mx-auto mt-4 max-w-md font-sans text-sm text-foreground/70">
+          Plusieurs formules selon votre rythme, avec ou sans engagement.
+          Découvrez ce qui est inclus dans chacune et choisissez la vôtre.
+        </p>
+        <Link
+          href="/rejoindre"
+          className="mt-8 inline-block border border-foreground px-10 py-4 font-sans text-xs tracking-[0.2em] text-foreground uppercase transition-colors hover:border-accent hover:text-accent"
+        >
+          Rejoignez-nous →
+        </Link>
       </section>
 
       <section id="nous-trouver" className="bg-foreground px-6 py-24 text-background scroll-mt-24 sm:px-10">

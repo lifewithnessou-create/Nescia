@@ -1,23 +1,28 @@
+import Link from "next/link";
 import { PageBanner } from "@/components/PageBanner";
 
-const pricingPlans = [
+const featureList = [
+  "Cours collectifs illimités",
+  "Tarif réduit sur le Pilates Reformer",
+  "Accès prioritaire aux événements",
+  "Tarif préférentiel Glow Bar",
+];
+
+const plans = [
   {
-    name: "Sans abonnement",
-    price: "À l'unité",
-    highlight: false,
-    rows: [
-      { label: "Cours collectifs", value: "120 MAD / séance" },
-      { label: "Pilates Reformer", value: "180 MAD / séance" },
-    ],
+    name: "Sans engagement",
+    description: "Résiliable à tout moment.",
+    included: [true, true, false, false],
   },
   {
-    name: "Avec l'abonnement",
-    price: "650 MAD / mois",
-    highlight: true,
-    rows: [
-      { label: "Cours collectifs", value: "Illimités, inclus" },
-      { label: "Pilates Reformer", value: "-20%, soit 144 MAD / séance" },
-    ],
+    name: "Engagement 6 mois",
+    description: "Un tarif avantageux sur la durée.",
+    included: [true, true, true, false],
+  },
+  {
+    name: "Engagement 12 mois",
+    description: "La formule la plus complète.",
+    included: [true, true, true, true],
   },
 ];
 
@@ -26,33 +31,44 @@ export default function Rejoindre() {
     <main>
       <PageBanner title="Rejoignez-nous" subtitle="Choisissez votre formule" />
 
-      <section className="mx-auto max-w-3xl px-6 py-24 sm:px-10">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {pricingPlans.map((plan) => (
+      <section className="mx-auto max-w-5xl px-6 py-24 sm:px-10">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {plans.map((plan) => (
             <div
               key={plan.name}
-              className={`flex flex-col gap-6 p-8 ${
-                plan.highlight
-                  ? "border-2 border-accent"
-                  : "border border-foreground/15"
-              }`}
+              className="flex flex-col gap-6 border border-foreground/15 p-8"
             >
               <div>
                 <h2 className="font-serif text-2xl text-foreground">
                   {plan.name}
                 </h2>
-                <p className="mt-2 font-sans text-sm tracking-wide text-accent">
-                  {plan.price}
+                <p className="mt-2 font-sans text-sm text-foreground/60">
+                  {plan.description}
                 </p>
               </div>
-              <ul className="flex flex-1 flex-col gap-4 font-sans text-sm text-foreground/70">
-                {plan.rows.map((row) => (
-                  <li key={row.label} className="flex flex-col gap-0.5">
-                    <span className="text-foreground/50">{row.label}</span>
-                    <span className="text-foreground">{row.value}</span>
+              <ul className="flex flex-1 flex-col gap-3 font-sans text-sm">
+                {featureList.map((feature, i) => (
+                  <li
+                    key={feature}
+                    className={`flex items-start gap-2 ${
+                      plan.included[i]
+                        ? "text-foreground"
+                        : "text-foreground/35 line-through"
+                    }`}
+                  >
+                    <span className={plan.included[i] ? "text-accent" : ""}>
+                      {plan.included[i] ? "✓" : "✕"}
+                    </span>
+                    {feature}
                   </li>
                 ))}
               </ul>
+              <Link
+                href="/connexion"
+                className="border border-foreground px-6 py-3 text-center font-sans text-xs tracking-[0.2em] text-foreground uppercase transition-colors hover:border-accent hover:text-accent"
+              >
+                Je veux celui-là
+              </Link>
             </div>
           ))}
         </div>
