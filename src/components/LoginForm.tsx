@@ -27,7 +27,11 @@ export function LoginForm() {
     });
 
     if (error) {
-      setError("E-mail ou mot de passe incorrect.");
+      setError(
+        error.message.includes("Email not confirmed")
+          ? "Votre e-mail n'est pas encore confirmé. Vérifiez votre boîte de réception (et les spams)."
+          : "E-mail ou mot de passe incorrect.",
+      );
       setLoading(false);
       return;
     }
