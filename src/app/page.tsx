@@ -97,20 +97,59 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="abonnements" className="mx-auto max-w-2xl scroll-mt-24 px-6 py-24 text-center sm:px-10">
-        <h2 className="font-serif text-3xl text-foreground sm:text-4xl">
-          Nos abonnements
-        </h2>
-        <p className="mx-auto mt-4 max-w-md font-sans text-sm text-foreground/70">
-          Plusieurs formules selon votre rythme, avec ou sans engagement.
-          Découvrez ce qui est inclus dans chacune et choisissez la vôtre.
-        </p>
-        <Link
-          href="/rejoindre"
-          className="mt-8 inline-block border border-foreground px-10 py-4 font-sans text-xs tracking-[0.2em] text-foreground uppercase transition-colors hover:border-accent hover:text-accent"
-        >
-          Rejoignez-nous →
-        </Link>
+      <section id="abonnements" className="mx-auto max-w-3xl scroll-mt-24 px-6 py-24 sm:px-10">
+        <div className="text-center">
+          <h2 className="font-serif text-3xl text-foreground sm:text-4xl">
+            Nos abonnements
+          </h2>
+          <p className="mx-auto mt-4 max-w-md font-sans text-sm text-foreground/70">
+            Les cours collectifs sont illimités et inclus avec
+            l&apos;abonnement. Le Pilates Reformer se réserve toujours à la
+            séance, à tarif réduit pour les abonnées.
+          </p>
+        </div>
+
+        <div className="mx-auto mt-12 grid max-w-2xl grid-cols-1 gap-6 sm:grid-cols-2">
+          <div className="flex flex-col gap-6 border border-foreground/15 p-8">
+            <h3 className="font-serif text-2xl text-foreground">
+              Sans abonnement
+            </h3>
+            <ul className="flex flex-1 flex-col gap-4 font-sans text-sm text-foreground/70">
+              <li className="flex flex-col gap-0.5">
+                <span className="text-foreground/50">Cours collectifs</span>
+                <span className="text-foreground">À l&apos;unité</span>
+              </li>
+              <li className="flex flex-col gap-0.5">
+                <span className="text-foreground/50">Pilates Reformer</span>
+                <span className="text-foreground">Plein tarif</span>
+              </li>
+            </ul>
+          </div>
+          <div className="flex flex-col gap-6 border-2 border-accent p-8">
+            <h3 className="font-serif text-2xl text-foreground">
+              Avec abonnement
+            </h3>
+            <ul className="flex flex-1 flex-col gap-4 font-sans text-sm text-foreground/70">
+              <li className="flex flex-col gap-0.5">
+                <span className="text-foreground/50">Cours collectifs</span>
+                <span className="text-foreground">Illimités, inclus</span>
+              </li>
+              <li className="flex flex-col gap-0.5">
+                <span className="text-foreground/50">Pilates Reformer</span>
+                <span className="text-foreground">Tarif réduit</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-12 text-center">
+          <Link
+            href="/rejoindre"
+            className="inline-block border border-foreground px-10 py-4 font-sans text-xs tracking-[0.2em] text-foreground uppercase transition-colors hover:border-accent hover:text-accent"
+          >
+            Adhérer à l&apos;abonnement →
+          </Link>
+        </div>
       </section>
 
       <section id="nous-trouver" className="bg-foreground px-6 py-24 text-background scroll-mt-24 sm:px-10">
