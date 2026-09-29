@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { HeroCarousel } from "@/components/HeroCarousel";
 import { DestinationCard } from "@/components/DestinationCard";
 import { NewsletterForm } from "@/components/NewsletterForm";
@@ -155,11 +156,23 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <span className="font-sans text-xs tracking-[0.2em] text-accent uppercase">
+              <Link
+                href="/rejoindre"
+                className="font-sans text-xs tracking-[0.2em] text-accent uppercase hover:opacity-70"
+              >
                 {plan.highlight ? "Adhérer →" : "Réserver →"}
-              </span>
+              </Link>
             </div>
           ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <Link
+            href="/rejoindre"
+            className="font-serif text-lg text-foreground transition-transform hover:translate-x-1"
+          >
+            Rejoignez-nous →
+          </Link>
         </div>
       </section>
 
