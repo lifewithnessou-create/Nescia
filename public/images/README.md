@@ -4,10 +4,16 @@ fichier est absent, un dégradé terracotta s'affiche à la place.
 
 - `hero.jpg` — bannière de la page d'accueil (studio, large format)
 - `studio-1.jpg`, `studio-2.jpg`, `studio-3.jpg` — photos du studio
-  (page "Découvrir la salle")
+  (carrousel accueil, page "Découvrir la salle")
+- `pilates-reformer.jpg` — photo pour la carte "Pilates Reformer"
+  (accueil)
+- `cours-collectifs.jpg` — photo pour la carte "Cours collectifs"
+  (accueil)
 - `glow-bar-1.jpg` — photo du Glow Bar (accueil, page Glow Bar, page
   Découvrir)
-- `event-1.jpg`, `event-2.jpg` — photos d'événements (page Découvrir)
+- `boutique-1.jpg` — photo pour la carte "Boutique" (accueil)
+- `event-1.jpg`, `event-2.jpg` — photos d'événements (accueil, page
+  Découvrir)
 
 Format conseillé : `.jpg` ou `.webp`, orientation paysage, lumière
 naturelle chaude, cohérent avec l'identité crème/terracotta du site.

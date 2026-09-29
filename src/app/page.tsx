@@ -1,49 +1,35 @@
-import Link from "next/link";
-import { PhotoFrame } from "@/components/PhotoFrame";
 import { HeroCarousel } from "@/components/HeroCarousel";
-import { BookingModal } from "@/components/BookingModal";
+import { DestinationCard } from "@/components/DestinationCard";
 import { NewsletterForm } from "@/components/NewsletterForm";
 
-const bookingOptions = [
+const bookingCards = [
   {
     title: "Pilates Reformer",
-    description:
-      "Séances individuelles ou en petit groupe sur machine, pour renforcer, sculpter et aligner le corps en douceur.",
+    image: "/images/pilates-reformer.jpg",
     href: "/pilates-reformer",
-    icon: (
-      <svg
-        viewBox="0 0 48 48"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        className="h-10 w-10"
-      >
-        <rect x="6" y="21" width="36" height="4" rx="2" />
-        <circle cx="12" cy="23" r="3" />
-        <circle cx="36" cy="23" r="3" />
-        <path d="M24 21V9" />
-        <path d="M18 9h12" />
-      </svg>
-    ),
   },
   {
     title: "Cours collectifs",
-    description:
-      "Pilates mat, barre, yoga et stretching en groupe, dans une ambiance conviviale et énergisante.",
+    image: "/images/cours-collectifs.jpg",
     href: "/cours-collectifs",
-    icon: (
-      <svg
-        viewBox="0 0 48 48"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        className="h-10 w-10"
-      >
-        <circle cx="16" cy="19" r="6" />
-        <circle cx="32" cy="19" r="6" />
-        <circle cx="24" cy="33" r="6" />
-      </svg>
-    ),
+  },
+];
+
+const discoverCards = [
+  {
+    title: "Glow Bar",
+    image: "/images/glow-bar-1.jpg",
+    href: "/glow-bar",
+  },
+  {
+    title: "Boutique",
+    image: "/images/boutique-1.jpg",
+    href: "/boutique",
+  },
+  {
+    title: "Événements",
+    image: "/images/event-1.jpg",
+    href: "/decouvrir-la-salle#evenements",
   },
 ];
 
@@ -83,27 +69,6 @@ const hours = [
   { day: "Dimanche", time: "9h00 – 14h00" },
 ];
 
-const exploreLinks = [
-  {
-    title: "Glow Bar",
-    description: "Jus, shots bien-être et en-cas sains.",
-    href: "/glow-bar",
-    image: "/images/glow-bar-1.jpg",
-  },
-  {
-    title: "Boutique",
-    description: "Tenues et accessoires Nescia.",
-    href: "/boutique",
-    image: "/images/studio-2.jpg",
-  },
-  {
-    title: "Événements",
-    description: "Brunchs, masterclass et rendez-vous du mois.",
-    href: "/decouvrir-la-salle#evenements",
-    image: "/images/event-1.jpg",
-  },
-];
-
 const reviews = [
   {
     quote:
@@ -134,51 +99,39 @@ export default function Home() {
           <p className="mt-6 font-sans text-xs tracking-[0.35em] text-[#F3EEE5] sm:text-sm">
             MOVE · GLOW · CONNECT
           </p>
-          <div className="mt-10 [&_button]:border-[#F3EEE5] [&_button]:text-[#F3EEE5] [&_button]:hover:border-accent [&_button]:hover:text-accent">
-            <BookingModal />
-          </div>
         </div>
       </section>
 
-      <section id="reservation" className="mx-auto max-w-5xl scroll-mt-24 px-6 py-24 sm:px-10">
-        <div className="text-center">
-          <h2 className="font-serif text-3xl text-foreground sm:text-4xl">
-            Réservez votre séance
-          </h2>
-          <p className="mx-auto mt-4 max-w-md font-sans text-sm text-foreground/70">
-            Choisissez la formule qui vous correspond aujourd&apos;hui.
-          </p>
-        </div>
-
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {bookingOptions.map((option) => (
-            <Link
-              key={option.href}
-              href={option.href}
-              className="group flex flex-col items-center gap-4 border border-foreground/15 px-8 py-12 text-center transition-colors hover:border-accent"
-            >
-              <span className="text-accent">{option.icon}</span>
-              <h3 className="font-serif text-2xl text-foreground">
-                {option.title}
-              </h3>
-              <p className="font-sans text-sm text-foreground/70">
-                {option.description}
-              </p>
-              <span className="mt-2 font-sans text-xs tracking-[0.2em] text-accent uppercase transition-transform group-hover:translate-x-1">
-                Réserver →
-              </span>
-            </Link>
+      <section id="reservation" className="mx-auto max-w-4xl scroll-mt-24 px-6 py-24 sm:px-10">
+        <h2 className="text-center font-serif text-3xl text-foreground sm:text-4xl">
+          Réservez votre cours
+        </h2>
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {bookingCards.map((card) => (
+            <DestinationCard key={card.href} {...card} />
           ))}
         </div>
       </section>
 
-      <section
-        id="abonnements"
-        className="scroll-mt-24 bg-foreground px-6 py-24 text-background sm:px-10"
-      >
-        <div className="mx-auto max-w-5xl text-center">
-          <h2 className="font-serif text-3xl sm:text-4xl">Nos abonnements</h2>
-          <p className="mx-auto mt-4 max-w-md font-sans text-sm text-background/70">
+      <section className="bg-foreground px-6 py-24 text-background sm:px-10">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="text-center font-serif text-3xl sm:text-4xl">
+            Venez découvrir aussi
+          </h2>
+          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {discoverCards.map((card) => (
+              <DestinationCard key={card.href} {...card} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="abonnements" className="mx-auto max-w-5xl scroll-mt-24 px-6 py-24 sm:px-10">
+        <div className="text-center">
+          <h2 className="font-serif text-3xl text-foreground sm:text-4xl">
+            Nos abonnements
+          </h2>
+          <p className="mx-auto mt-4 max-w-md font-sans text-sm text-foreground/70">
             Trois formules pour intégrer Nescia à votre rythme de vie.
           </p>
         </div>
@@ -187,15 +140,17 @@ export default function Home() {
           {memberships.map((plan) => (
             <div
               key={plan.name}
-              className="flex flex-col gap-6 border border-background/20 p-8"
+              className="flex flex-col gap-6 border border-foreground/15 p-8"
             >
               <div>
-                <h3 className="font-serif text-2xl">{plan.name}</h3>
+                <h3 className="font-serif text-2xl text-foreground">
+                  {plan.name}
+                </h3>
                 <p className="mt-2 font-sans text-sm tracking-wide text-accent">
                   {plan.price}
                 </p>
               </div>
-              <ul className="flex flex-1 flex-col gap-3 font-sans text-sm text-background/80">
+              <ul className="flex flex-1 flex-col gap-3 font-sans text-sm text-foreground/70">
                 {plan.perks.map((perk) => (
                   <li key={perk} className="flex gap-2">
                     <span className="text-accent">·</span>
@@ -203,40 +158,46 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
+              <span className="font-sans text-xs tracking-[0.2em] text-accent uppercase">
+                Adhérer →
+              </span>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-6 py-24 sm:px-10">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
+      <section id="nous-trouver" className="bg-foreground px-6 py-24 text-background scroll-mt-24 sm:px-10">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-12 md:grid-cols-2">
           <div>
-            <h2 className="font-serif text-3xl text-foreground sm:text-4xl">
-              Nous trouver
-            </h2>
-            <p className="mt-4 font-sans text-sm text-foreground/70">
+            <h2 className="font-serif text-3xl sm:text-4xl">Nous trouver</h2>
+            <p className="mt-4 font-sans text-sm text-background/70">
               Hivernage, Marrakech
             </p>
-            <a
-              href="https://maps.google.com/?q=Marrakech"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-block font-sans text-xs tracking-[0.2em] text-accent uppercase"
-            >
-              Voir sur la carte →
-            </a>
+            <div className="relative mt-6 aspect-4/3 overflow-hidden">
+              <iframe
+                title="Localisation Nescia"
+                src="https://www.google.com/maps?q=Marrakech&output=embed"
+                loading="lazy"
+                className="pointer-events-none absolute inset-0 h-full w-full border-0"
+              />
+              <a
+                href="https://maps.google.com/?q=Marrakech"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Ouvrir dans Google Maps"
+                className="absolute inset-0"
+              />
+            </div>
           </div>
           <div>
-            <h2 className="font-serif text-3xl text-foreground sm:text-4xl">
-              Horaires
-            </h2>
-            <div className="mt-4 flex flex-col gap-2">
+            <h2 className="font-serif text-3xl sm:text-4xl">Horaires</h2>
+            <div className="mt-6 flex flex-col gap-2">
               {hours.map((h) => (
                 <div
                   key={h.day}
-                  className="flex justify-between gap-4 font-sans text-sm text-foreground/80"
+                  className="flex justify-between gap-4 font-sans text-sm text-background/80"
                 >
-                  <span className="text-foreground/60">{h.day}</span>
+                  <span className="text-background/60">{h.day}</span>
                   <span>{h.time}</span>
                 </div>
               ))}
@@ -245,28 +206,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-foreground px-6 py-24 text-background sm:px-10">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="text-center font-serif text-3xl sm:text-4xl">
-            À découvrir aussi
-          </h2>
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
-            {exploreLinks.map((item) => (
-              <Link key={item.href} href={item.href} className="group block">
-                <PhotoFrame src={item.image} className="aspect-4/3" />
-                <h3 className="mt-4 font-serif text-xl">{item.title}</h3>
-                <p className="font-sans text-sm text-background/70">
-                  {item.description}
-                </p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section id="avis" className="mx-auto max-w-4xl scroll-mt-24 px-6 py-24 text-center sm:px-10">
         <h2 className="font-serif text-3xl text-foreground sm:text-4xl">
-          Avis de nos membres
+          Ce que nos clientes en pensent
         </h2>
         <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-3">
           {reviews.map((review) => (
@@ -280,12 +222,6 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <Link
-          href="/decouvrir-la-salle"
-          className="mt-10 inline-block font-sans text-xs tracking-[0.2em] text-accent uppercase"
-        >
-          Découvrir la salle en détail →
-        </Link>
       </section>
 
       <section className="mx-auto flex max-w-5xl flex-col items-center px-6 py-24 text-center sm:px-10">

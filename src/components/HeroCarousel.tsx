@@ -26,8 +26,8 @@ export function HeroCarousel() {
         <PhotoFrame
           key={src}
           src={src}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            i === index ? "opacity-100" : "opacity-0"
+          className={`absolute inset-0 transition-all duration-1000 ${
+            i === index ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0"
           }`}
           overlay="linear-gradient(to bottom, rgba(43,36,29,0.35), rgba(43,36,29,0.65))"
         />
