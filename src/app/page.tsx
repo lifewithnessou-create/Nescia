@@ -33,32 +33,23 @@ const discoverCards = [
   },
 ];
 
-const memberships = [
+const pricingPlans = [
   {
-    name: "Découverte",
-    price: "450 MAD / mois",
-    perks: [
-      "4 cours collectifs par mois",
-      "1 séance Reformer d'essai offerte",
-      "Tarif préférentiel Glow Bar",
+    name: "Sans abonnement",
+    price: "À l'unité",
+    highlight: false,
+    rows: [
+      { label: "Cours collectifs", value: "120 MAD / séance" },
+      { label: "Pilates Reformer", value: "180 MAD / séance" },
     ],
   },
   {
-    name: "Essentiel",
-    price: "850 MAD / mois",
-    perks: [
-      "Cours collectifs illimités",
-      "2 séances Reformer par mois",
-      "-10% en boutique",
-    ],
-  },
-  {
-    name: "Premium",
-    price: "1450 MAD / mois",
-    perks: [
-      "Accès illimité Reformer et cours collectifs",
-      "Glow Bar inclus 2x / semaine",
-      "Accès prioritaire aux événements",
+    name: "Avec l'abonnement",
+    price: "650 MAD / mois",
+    highlight: true,
+    rows: [
+      { label: "Cours collectifs", value: "Illimités, inclus" },
+      { label: "Pilates Reformer", value: "-20%, soit 144 MAD / séance" },
     ],
   },
 ];
@@ -132,15 +123,21 @@ export default function Home() {
             Nos abonnements
           </h2>
           <p className="mx-auto mt-4 max-w-md font-sans text-sm text-foreground/70">
-            Trois formules pour intégrer Nescia à votre rythme de vie.
+            Les cours collectifs sont illimités et inclus avec
+            l&apos;abonnement. Le Pilates Reformer se réserve toujours à la
+            séance, à tarif réduit pour les abonnées.
           </p>
         </div>
 
-        <div className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
-          {memberships.map((plan) => (
+        <div className="mx-auto mt-12 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-2">
+          {pricingPlans.map((plan) => (
             <div
               key={plan.name}
-              className="flex flex-col gap-6 border border-foreground/15 p-8"
+              className={`flex flex-col gap-6 p-8 ${
+                plan.highlight
+                  ? "border-2 border-accent"
+                  : "border border-foreground/15"
+              }`}
             >
               <div>
                 <h3 className="font-serif text-2xl text-foreground">
@@ -150,16 +147,16 @@ export default function Home() {
                   {plan.price}
                 </p>
               </div>
-              <ul className="flex flex-1 flex-col gap-3 font-sans text-sm text-foreground/70">
-                {plan.perks.map((perk) => (
-                  <li key={perk} className="flex gap-2">
-                    <span className="text-accent">·</span>
-                    {perk}
+              <ul className="flex flex-1 flex-col gap-4 font-sans text-sm text-foreground/70">
+                {plan.rows.map((row) => (
+                  <li key={row.label} className="flex flex-col gap-0.5">
+                    <span className="text-foreground/50">{row.label}</span>
+                    <span className="text-foreground">{row.value}</span>
                   </li>
                 ))}
               </ul>
               <span className="font-sans text-xs tracking-[0.2em] text-accent uppercase">
-                Adhérer →
+                {plan.highlight ? "Adhérer →" : "Réserver →"}
               </span>
             </div>
           ))}
