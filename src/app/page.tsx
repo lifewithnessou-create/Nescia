@@ -236,6 +236,26 @@ export default function Home() {
           <NewsletterForm />
         </div>
       </section>
+
+      <section className="border-t border-foreground/10 px-6 py-16 text-center sm:px-10">
+        <h2 className="font-serif text-2xl text-foreground">
+          Bientôt en application
+        </h2>
+        <p className="mx-auto mt-3 max-w-sm font-sans text-sm text-foreground/70">
+          Nescia arrive sur mobile pour réserver vos cours encore plus vite.
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <span className="flex cursor-not-allowed items-center gap-2 border border-foreground/20 px-6 py-3 font-sans text-xs tracking-[0.15em] text-foreground/40 uppercase">
+            Télécharger sur l&apos;App Store
+          </span>
+          <span className="flex cursor-not-allowed items-center gap-2 border border-foreground/20 px-6 py-3 font-sans text-xs tracking-[0.15em] text-foreground/40 uppercase">
+            Disponible sur Google Play
+          </span>
+        </div>
+        <p className="mt-4 font-sans text-[0.7rem] tracking-[0.15em] text-foreground/40 uppercase">
+          Bientôt disponible
+        </p>
+      </section>
     </main>
   );
 }
