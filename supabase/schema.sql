@@ -61,3 +61,26 @@ cross join (
 ) as t(label, time_of_day)
 where extract(dow from d) in (1, 3, 5, 6) -- lundi, mercredi, vendredi, samedi
   and not (extract(dow from d) = 6 and t.label <> 'matin'); -- samedi : un seul cours, le matin
+
+-- Demandes d'adhésion (formulaire /adhesion)
+create table if not exists membership_requests (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references auth.users(id) on delete cascade,
+  pack text not null,
+  engagement text not null,
+  city text,
+  goals text,
+  created_at timestamptz not null default now()
+);
+
+alter table membership_requests enable row level security;
+
+drop policy if exists "Users can view their own membership request" on membership_requests;
+create policy "Users can view their own membership request"
+  on membership_requests for select
+  using (auth.uid() = user_id);
+
+drop policy if exists "Users can create their own membership request" on membership_requests;
+create policy "Users can create their own membership request"
+  on membership_requests for insert
+  with check (auth.uid() = user_id);
