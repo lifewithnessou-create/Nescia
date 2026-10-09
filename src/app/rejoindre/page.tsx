@@ -3,40 +3,55 @@ import { PageBanner } from "@/components/PageBanner";
 
 const featureList = [
   "Cours collectifs illimités",
-  "Tarif réduit sur le Pilates Reformer",
-  "Accès prioritaire aux événements",
-  "Tarif préférentiel Glow Bar",
+  "Réduction Pilates Reformer",
+  "Réduction Glow Bar",
+  "Réduction boutique",
+  "Événements",
 ];
 
 const plans = [
   {
-    name: "Sans engagement",
-    description: "Résiliable à tout moment.",
-    included: [true, true, false, false],
+    name: "Basique",
+    description: "L'essentiel pour bouger régulièrement.",
+    included: [true, true, false, false, false],
+    eventsNote: null,
   },
   {
-    name: "Engagement 6 mois",
-    description: "Un tarif avantageux sur la durée.",
-    included: [true, true, true, false],
+    name: "Premium",
+    description: "Plus d'avantages au quotidien.",
+    included: [true, true, true, false, true],
+    eventsNote: "À prix réduit, accès prioritaire",
   },
   {
-    name: "Engagement 12 mois",
-    description: "La formule la plus complète.",
-    included: [true, true, true, true],
+    name: "Ultra VIP",
+    description: "Le meilleur de Nescia, sans compter.",
+    included: [true, true, true, true, true],
+    eventsNote: "Gratuits, accès prioritaire",
+    highlight: true,
   },
 ];
 
 export default function Rejoindre() {
   return (
     <main>
-      <PageBanner title="Rejoignez-nous" subtitle="Choisissez votre formule" />
+      <PageBanner title="Rejoignez-nous" subtitle="Choisissez votre pack" />
 
       <section className="mx-auto max-w-5xl px-6 py-24 sm:px-10">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <p className="mx-auto max-w-lg text-center font-sans text-sm text-foreground/70">
+          Chaque pack est disponible sans engagement, ou avec engagement 6
+          mois / 1 an pour un tarif préférentiel. Les événements restent
+          accessibles à toutes, à prix plein pour les non-abonnées.
+        </p>
+
+        <div className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
           {plans.map((plan) => (
             <div
               key={plan.name}
-              className="flex flex-col gap-6 border border-foreground/15 p-8"
+              className={`flex flex-col gap-6 p-8 ${
+                plan.highlight
+                  ? "border-2 border-accent"
+                  : "border border-foreground/15"
+              }`}
             >
               <div>
                 <h2 className="font-serif text-2xl text-foreground">
@@ -59,7 +74,14 @@ export default function Rejoindre() {
                     <span className={plan.included[i] ? "text-accent" : ""}>
                       {plan.included[i] ? "✓" : "✕"}
                     </span>
-                    {feature}
+                    <span>
+                      {feature}
+                      {plan.included[i] && feature === "Événements" && plan.eventsNote && (
+                        <span className="block text-xs text-foreground/50">
+                          {plan.eventsNote}
+                        </span>
+                      )}
+                    </span>
                   </li>
                 ))}
               </ul>
